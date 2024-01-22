@@ -58,6 +58,7 @@ class DemoWebServer(SICApplication):
         # the HTML file (a sign-in page with VU logo) to be rendered
         html_file = "sign_in.html"
         web_url = "http://10.15.3.224:8080/"
+        # web_url = "debruijn.ai"
 
         # send html to WebserverService
         with open(html_file) as file:

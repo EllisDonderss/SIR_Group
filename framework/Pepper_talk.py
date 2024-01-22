@@ -14,10 +14,10 @@ def on_dialog(message):
             print("Transcript:", message.response.recognition_result.transcript)
 
 # connect to the robot
-nao = Pepper(ip='10.0.0.148')
+nao = Pepper(ip='10.0.0.164')
 
 # load the key json file
-keyfile_json = json.load(open("sirproject2024-6c55688170ba.json"))
+keyfile_json = json.load(open("true-episode-411517-8a835be369c1.json"))
 
 # set up the config
 conf = DialogflowConf(keyfile_json=keyfile_json, sample_rate_hertz=16000)

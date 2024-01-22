@@ -129,11 +129,11 @@ def on_button_click(message):
 
 
 port = 8080
-machine_ip = '192.168.0.168'
-robot_ip = '192.168.0.181'
+machine_ip = '10.0.0.205'
+robot_ip = '10.0.0.164'
 # the HTML file to be rendered
 html_file = "demo_pepper_guess_number.html"
-web_url = f'https://{machine_ip}:{port}/'
+web_url = f'https://publicdomainvectors.org/photos/Battery-4-2016101425.png'
 # the random number that an user should guess
 rand_int = random.randint(1, 10)
 
@@ -149,7 +149,7 @@ web_server.register_callback(on_button_click)
 
 
 # dialogflow setup
-keyfile_json = json.load(open("dialogflow-tutorial.json"))
+keyfile_json = json.load(open("true-episode-411517-8a835be369c1.json"))
 # local microphone
 # sample_rate_hertz = 44100
 # pepper's micriphone
