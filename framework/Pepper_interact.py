@@ -12,7 +12,6 @@ from sic_framework.services.webserver.webserver_pepper_tablet import Webserver, 
 from sic_framework.devices.common_naoqi.pepper_tablet import NaoqiTablet, UrlMessage
 from sic_framework.devices.common_naoqi.naoqi_text_to_speech import NaoqiTextToSpeechRequest
 from sic_framework.devices import Pepper
-from sic_framework.devices import Pepper
 from sic_framework.devices.nao import NaoqiTextToSpeechRequest, NaoqiMoveRequest, NaoqiAnimationRequest
 from sic_framework.services.dialogflow.dialogflow import DialogflowConf, GetIntentRequest, Dialogflow, RecognitionResult, QueryResult
 from sic_framework.core import *
@@ -31,10 +30,6 @@ conf = DialogflowConf(keyfile_json=keyfile_json, sample_rate_hertz=16000)
 dialogflow = Dialogflow(ip='localhost', conf=conf)
 
 port = 8080
-# machine_ip = '10.0.0.205'
-# robot_ip = '10.0.0.164'
-# the HTML file to be rendered
-html_file = "image1.html"
 web_url_low_battery = f'https://publicdomainvectors.org/photos/Battery-4-2016101425.png'
 web_url_half_battery = f'https://publicdomainvectors.org/photos/Battery-3-2016101425.png'
 web_url_full_battery = f'https://publicdomainvectors.org/photos/Battery-2-2016101425.png'
@@ -53,7 +48,6 @@ def speak(text):
     print("Reply:", text)
     if reply.intent == "greetings - custom":
         nao.tts.request(NaoqiTextToSpeechRequest(text))
-        # wait 1 second
         time.sleep(1.0)
         nao.tablet_display_url.send_message(UrlMessage(web_url_low_battery))
         nao.tts.request(NaoqiTextToSpeechRequest(f"Oh no! I see that my battery is running low. That is unfortunate."))
