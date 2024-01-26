@@ -59,6 +59,7 @@ def speak(text):
 def move():
     # Move robot arms while speaking
     nao.motion.request(NaoqiAnimationRequest("animations/Stand/Gestures/Explain_1"))
+    # nao.motion.request(NaoqiAnimationRequest("animations/Stand/Gestures/Explain_11"))
 
 # Connect the output of NaoqiMicrophone as the input of DialogflowComponent
 dialogflow.connect(nao.mic)
@@ -67,19 +68,9 @@ dialogflow.connect(nao.mic)
 dialogflow.register_callback(on_dialog)
 
 # Demo starts
-a = nao.motion.request(NaoqiAnimationRequest("animations/Stand/Gestures/Hey_3"))
-b = nao.tablet_display_url.send_message(UrlMessage(web_url_T2))
-c = nao.tts.request(NaoqiTextToSpeechRequest("Hello, how are you?"))
-
-# Use threads to execute speech and motion concurrently
-first = threading.Thread(target=b)
-second = threading.Thread(target=a)
-third = threading.Thread(target=c)
-
-# Start both threads
-first.start()
-second.start()
-third.start()
+nao.motion.request(NaoqiAnimationRequest("animations/Stand/Gestures/Hey_3"))
+nao.tablet_display_url.send_message(UrlMessage(web_url_T2))
+nao.tts.request(NaoqiTextToSpeechRequest("Hello, how are you?"))
 
 print(" -- Ready -- ")
 

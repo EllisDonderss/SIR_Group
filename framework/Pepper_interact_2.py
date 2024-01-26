@@ -31,19 +31,19 @@ dialogflow = Dialogflow(ip='localhost', conf=conf)
 port = 8080
 
 # images to display on the tablet
-web_url_low_battery = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/Begin_State.png'
-web_url_T1 = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/T1_Text.png'
-web_url_T2 = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/T2_Text.png'
-web_url_T3 = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/T3_Text.png'
-web_url_T4 = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/T4_Text.png'
-web_url_T5 = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/T5_Text.png'
+web_url_low_battery = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/Begin_State_resized.png'
+web_url_T1 = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/T1_Text_resized.png'
+web_url_T2 = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/T2_Text_resized.png'
+web_url_T3 = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/T3_Text_resized.png'
+web_url_T4 = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/T4_Text_resized.png'
+web_url_T5 = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/T5_Text_resized.png'
 
 # images to display on the tablet when giving back moneyù
-web_url_T1_back = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/T1_Return.png'
-web_url_T2_back = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/T2_Return.png'
-web_url_T3_back = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/T3_Return.png'
-web_url_T4_back = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/T4_Return.png'
-web_url_T5_back = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/T5_Return.png'
+web_url_T1_back = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/T1_Return_resized.png'
+web_url_T2_back = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/T2_Return_resized.png'
+web_url_T3_back = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/T3_Return_resized.png'
+web_url_T4_back = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/T4_Return_resized.png'
+web_url_T5_back = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/T5_Return_resized.png'
 
 # webserver setup
 web_conf = WebserverConf(host="0.0.0.0", port=port)
@@ -53,7 +53,6 @@ web_server = Webserver(ip='localhost', conf=web_conf)
 
 def calculate_amount(amount):
     robot_gets = int(amount) * 3
-    # robot_has = robot_gets + robot_amount
     return [robot_gets, int(math.ceil(robot_gets * 2/3))]
 
 # Callback function for Dialogflow response
@@ -140,7 +139,7 @@ dialogflow.register_callback(on_dialog)
 # Demo starts
 nao.motion.request(NaoqiAnimationRequest("animations/Stand/Gestures/Yes_1"))
 nao.tablet_display_url.send_message(UrlMessage(web_url_low_battery))
-nao.tts.request(NaoqiTextToSpeechRequest("The game is clear. How much money do you want to invest?"))
+nao.tts.request(NaoqiTextToSpeechRequest("The game is clear. How much money do you want to invest? Please say a number between 0 and 5 euros."))
 print(" -- Ready -- ")
 
 # Random value for demo purposes
