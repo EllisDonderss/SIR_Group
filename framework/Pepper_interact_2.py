@@ -45,9 +45,6 @@ web_url_T3_back = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_
 web_url_T4_back = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/T4_Return.png'
 web_url_T5_back = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/T5_Return.png'
 
-#web_url_half_battery = f'https://publicdomainvectors.org/photos/Battery-3-2016101425.png'
-#web_url_full_battery = f'https://publicdomainvectors.org/photos/Battery-2-2016101425.png'
-
 # webserver setup
 web_conf = WebserverConf(host="0.0.0.0", port=port)
 web_server = Webserver(ip='localhost', conf=web_conf)
