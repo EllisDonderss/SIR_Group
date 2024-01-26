@@ -30,8 +30,8 @@ conf = DialogflowConf(keyfile_json=keyfile_json, sample_rate_hertz=16000)
 dialogflow = Dialogflow(ip='localhost', conf=conf)
 
 port = 8080
-web_url_T2 = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/T2.png'
-web_url_T1 = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/Begin_State.png'
+web_url_T2 = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/T2_resized.png'
+web_url_T1 = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/Begin_State_resized.png'
 
 # webserver setup
 web_conf = WebserverConf(host="0.0.0.0", port=port)
