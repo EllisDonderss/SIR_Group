@@ -31,18 +31,19 @@ dialogflow = Dialogflow(ip='localhost', conf=conf)
 port = 8080
 
 # images to display on the tablet
-web_url_low_battery = f'https://publicdomainvectors.org/photos/Battery-4-2016101425.png'
-web_url_T1
-web_url_T2
-web_url_T3
-web_url_T4
-web_url_T5
+web_url_low_battery = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/Begin_State.png'
+web_url_T1 = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/T1_Text.png'
+web_url_T2 = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/T2_Text.png'
+web_url_T3 = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/T3_Text.png'
+web_url_T4 = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/T4_Text.png'
+web_url_T5 = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/T5_Text.png'
 
-# images to display on the tablet when giving back money
-web_url_T2_back
-web_url_T3_back
-web_url_T4_back
-web_url_T5_back
+# images to display on the tablet when giving back moneyù
+web_url_T1_back = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/T1_Return.png'
+web_url_T2_back = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/T2_Return.png'
+web_url_T3_back = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/T3_Return.png'
+web_url_T4_back = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/T4_Return.png'
+web_url_T5_back = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/T5_Return.png'
 
 #web_url_half_battery = f'https://publicdomainvectors.org/photos/Battery-3-2016101425.png'
 #web_url_full_battery = f'https://publicdomainvectors.org/photos/Battery-2-2016101425.png'
@@ -71,16 +72,14 @@ def speak(text):
          # Get the amount
         amount = int(reply.response.query_result.parameters["number"])
         print(amount)
-        if amount > 10:
-            nao.tts.request(NaoqiTextToSpeechRequest(f"You can't invest more than 10 euros. Please try again."))
+        if amount > 5:
+            nao.tts.request(NaoqiTextToSpeechRequest(f"You can't invest more than 5 euros."))
         elif amount <= 0:
-            nao.tts.request(NaoqiTextToSpeechRequest(f"You didn't invest anything. Thank you for playing the game! Please talk to my caretaker for filling out a survey"))
+            nao.tts.request(NaoqiTextToSpeechRequest(f"You decided not to invest. Thank you anyways for playing the game! Please talk to my caretaker for filling out a survey"))
         else:
             calculated_amount = calculate_amount(amount)
 
             # Speak the response
-            nao.tts.request(NaoqiTextToSpeechRequest(f"Thank you for investing {amount} euros. I now have {calculated_amount[0]} euros that I'll convert in energy."))
-            time.sleep(1.0)
 
             if amount == 1:
                 nao.tablet_display_url.send_message(UrlMessage(web_url_T1))
@@ -96,9 +95,11 @@ def speak(text):
                 nao.tts.request(NaoqiTextToSpeechRequest(f"I was not able to calculate the amount. Please try again."))
             time.sleep(1.0)
 
-            nao.tts.request(NaoqiTextToSpeechRequest(f"I decided that I will give you back two thirds of {calculated_amount[0]} which is {calculated_amount[1]}.")) 
+            nao.tts.request(NaoqiTextToSpeechRequest(f"Thank you for investing {amount} euros. I now have {calculated_amount[0]} euros that I'll convert in energy."))
+            time.sleep(1.0)
+    
             if amount == 1:
-                nao.tablet_display_url.send_message(UrlMessage(web_url_low_battery))
+                nao.tablet_display_url.send_message(UrlMessage(web_url_T1_back))
             elif amount == 2:
                 nao.tablet_display_url.send_message(UrlMessage(web_url_T2_back))
             elif amount == 3:
@@ -109,6 +110,7 @@ def speak(text):
                 nao.tablet_display_url.send_message(UrlMessage(web_url_T5_back))
             else:
                 nao.tts.request(NaoqiTextToSpeechRequest(f"Something went wrong. Please try again."))
+            nao.tts.request(NaoqiTextToSpeechRequest(f"I decided that I will give you back two thirds of {calculated_amount[0]} which is {calculated_amount[1]}.")) 
             time.sleep(1.0)
 
             nao.tts.request(NaoqiTextToSpeechRequest(f"Thank you for playing the game! Please talk to my caretaker for filling out a survey"))        
@@ -140,8 +142,8 @@ dialogflow.register_callback(on_dialog)
 
 # Demo starts
 nao.motion.request(NaoqiAnimationRequest("animations/Stand/Gestures/Yes_1"))
-nao.tts.request(NaoqiTextToSpeechRequest("The game is clear. How much money do you want to invest?"))
 nao.tablet_display_url.send_message(UrlMessage(web_url_low_battery))
+nao.tts.request(NaoqiTextToSpeechRequest("The game is clear. How much money do you want to invest?"))
 print(" -- Ready -- ")
 
 # Random value for demo purposes

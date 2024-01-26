@@ -30,9 +30,8 @@ conf = DialogflowConf(keyfile_json=keyfile_json, sample_rate_hertz=16000)
 dialogflow = Dialogflow(ip='localhost', conf=conf)
 
 port = 8080
-web_url_low_battery = f'https://publicdomainvectors.org/photos/Battery-4-2016101425.png'
-web_url_half_battery = f'https://publicdomainvectors.org/photos/Battery-3-2016101425.png'
-web_url_full_battery = f'https://publicdomainvectors.org/photos/Battery-2-2016101425.png'
+web_url_T2 = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/T2.png'
+web_url_T1 = f'https://media.githubusercontent.com/media/EllisDonderss/SIR_Group/new/framework/UI%20pepper/Begin_State.png'
 
 # webserver setup
 web_conf = WebserverConf(host="0.0.0.0", port=port)
@@ -49,7 +48,7 @@ def speak(text):
     if reply.intent == "greetings - custom":
         nao.tts.request(NaoqiTextToSpeechRequest(text))
         time.sleep(1.0)
-        nao.tablet_display_url.send_message(UrlMessage(web_url_low_battery))
+        nao.tablet_display_url.send_message(UrlMessage(web_url_T1))
         nao.tts.request(NaoqiTextToSpeechRequest(f"Oh no! I see that my battery is running low. That is unfortunate."))
         # stop the conversation
         exit()
@@ -69,7 +68,7 @@ dialogflow.register_callback(on_dialog)
 
 # Demo starts
 a = nao.motion.request(NaoqiAnimationRequest("animations/Stand/Gestures/Hey_3"))
-b = nao.tablet_display_url.send_message(UrlMessage(web_url_half_battery))
+b = nao.tablet_display_url.send_message(UrlMessage(web_url_T2))
 c = nao.tts.request(NaoqiTextToSpeechRequest("Hello, how are you?"))
 
 # Use threads to execute speech and motion concurrently
